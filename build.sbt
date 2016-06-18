@@ -4,7 +4,7 @@ val appName = "tlv-parser"
 
 name := appName
 
-herokuAppName in Compile := appName
+herokuAppName in Compile := "sheltered-savannah-85751"
 
 version := "1.0"
 
@@ -24,4 +24,4 @@ WebKeys.packagePrefix in Assets := "assets/"
 
 mainClass in Compile := Some("mvp.volvo.tlv.WebServer")
 
-lazy val root = (project in file(".")).enablePlugins(SbtWeb)
+lazy val root = (project in file(".")).enablePlugins(SbtWeb, JavaAppPackaging)
