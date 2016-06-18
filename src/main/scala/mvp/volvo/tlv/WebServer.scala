@@ -10,8 +10,6 @@ import mvp.volvo.tlv.model.TlvParseRequest
 import mvp.volvo.tlv.tlv.{TlvException, TlvParser}
 import mvp.volvo.tlv.model.JsonSupport
 
-import scala.util.Properties
-
 class WebServer
 
 object WebServer extends App with JsonSupport {
@@ -47,7 +45,7 @@ object WebServer extends App with JsonSupport {
         }
       }
 
-  val port = System.getenv.getOrDefault("http.port", "8080")
+  val port = sys.props.getOrElse("http.port", "8080")
   Http().bindAndHandle(route, "0.0.0.0", port.toInt)
   log.info(s"Server online at http://0.0.0.0:$port\n")
 }
