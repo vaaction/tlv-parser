@@ -47,6 +47,6 @@ object WebServer extends App with JsonSupport {
         }
       }
 
-  Http().bindAndHandle(route, "0.0.0.0", Properties.envOrElse("http.port", "8080").toInt)
+  Http().bindAndHandle(route, "0.0.0.0", System.getenv.getOrDefault("http.port", "8080").toInt)
   log.info(s"Server online at http://0.0.0.0:8080\n")
 }
