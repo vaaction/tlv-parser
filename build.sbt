@@ -1,4 +1,10 @@
-name := "tlv-parser"
+import sbt.Keys._
+
+val appName = "tlv-parser"
+
+name := appName
+
+herokuAppName in Compile := appName
 
 version := "1.0"
 
@@ -16,4 +22,4 @@ WebKeys.packagePrefix in Assets := "assets/"
 
 (managedClasspath in Runtime) += (packageBin in Assets).value
 
-lazy val tlv = (project in file(".")).enablePlugins(SbtWeb)
+lazy val root = (project in file(".")).enablePlugins(SbtWeb)
