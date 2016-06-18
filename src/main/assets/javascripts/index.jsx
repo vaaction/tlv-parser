@@ -9,6 +9,11 @@ var TlvHexForm = React.createClass({
     render: function() {
         return (
             <div className="tlvHexForm">
+                <p>
+                    <h4>Byte Ordering</h4>
+                    <label><input type="radio" name="browser" value="BIG_ENDIAN" /> BIG ENDIAN</label>
+                    <label><input type="radio" name="browser" value="LITTLE_ENDIAN" /> LITTLE ENDIAN</label>
+                </p>
                 <h4>
                     TLV(HEX)
                 </h4>
