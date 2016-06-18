@@ -4,7 +4,7 @@ val appName = "tlv-parser"
 
 name := appName
 
-herokuAppName in Compile := "sheltered-savannah-85751"
+herokuAppName in Compile := appName
 
 version := "1.0"
 
