@@ -9,9 +9,9 @@ var TlvHexForm = React.createClass({
     render: function() {
         return (
             <div className="tlvHexForm">
-                <h3>r
-                    Throw your TLV(HEX) to the FIRE!!!
-                </h3>
+                <h4>
+                    TLV(HEX)
+                </h4>
                 <textarea
                     value={this.state.data}
                     onChange={this.handleDataChange} >
@@ -37,7 +37,8 @@ var TlvParsingResult = React.createClass({
                 method: "POST",
                 data: JSON.stringify({data: this.state.data}),
                 success: function(data) {
-                    this.setState({tlvResponse: JSON.stringify(data, null, 2)});
+                    var stringifyData = JSON.stringify(data, null, '\t');
+                    this.setState({tlvResponse: stringifyData.substring(1, stringifyData.length - 1)});
                 }.bind(this),
                 error: function(data) {
                     this.setState({tlvResponse: data.responseText});
@@ -51,11 +52,14 @@ var TlvParsingResult = React.createClass({
             setInterval(this.loadCommentsFromServer, 500);
         }
     },
+    jsonMarkup: function() {
+        var md = new Remarkable();
+        var jsonMarkup = md.render(this.state.tlvResponse);
+        return { __html: jsonMarkup };
+    },
     render: function() {
         return (
-            <p className="tlvParsingResult">
-                {this.state.tlvResponse}
-            </p>
+            <span dangerouslySetInnerHTML={this.jsonMarkup()} />
         );
     }
 });
@@ -64,7 +68,7 @@ var Content = React.createClass({
     render: function() {
         return (
             <div className="content">
-                <h1>The Best TLV Parser</h1>
+                <h1>TLV Parser</h1>
                 <TlvHexForm />
             </div>
         );
