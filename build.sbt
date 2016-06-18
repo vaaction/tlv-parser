@@ -22,4 +22,6 @@ WebKeys.packagePrefix in Assets := "assets/"
 
 (managedClasspath in Runtime) += (packageBin in Assets).value
 
+mainClass in Compile := Some("mvp.volvo.tlv.WebServer")
+
 lazy val root = (project in file(".")).enablePlugins(SbtWeb)
