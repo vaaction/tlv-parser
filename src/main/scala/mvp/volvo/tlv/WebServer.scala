@@ -47,6 +47,7 @@ object WebServer extends App with JsonSupport {
         }
       }
 
-  Http().bindAndHandle(route, "0.0.0.0", System.getenv.getOrDefault("http.port", "8080").toInt)
-  log.info(s"Server online at http://0.0.0.0:8080\n")
+  val port = System.getenv.getOrDefault("http.port", "8080")
+  Http().bindAndHandle(route, "0.0.0.0", port.toInt)
+  log.info(s"Server online at http://0.0.0.0:$port\n")
 }
