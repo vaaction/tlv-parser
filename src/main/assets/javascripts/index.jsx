@@ -1,18 +1,24 @@
+var DEFAULT_ORDER = "BIG_ENDIAN"
+
 var TlvHexForm = React.createClass({
     getInitialState: function() {
-        return {data: "00 01 00 0C 00 02 00 03 61 62 63 00 03 00 01 64"};
+        return {data: "00 01 00 0C 00 02 00 03 61 62 63 00 03 00 01 64", state: ""};
     },
     handleDataChange: function(e) {
         this.setState({data: e.target.value});
-        TlvParsingResult.bind(this, this.data);
+        TlvParsingResult.bind(this, this.data, this.order);
     },
     render: function() {
         return (
             <div className="tlvHexForm">
                 <p>
                     <h4>Byte Ordering</h4>
-                    <label><input type="radio" name="browser" value="BIG_ENDIAN" /> BIG ENDIAN</label>
-                    <label><input type="radio" name="browser" value="LITTLE_ENDIAN" /> LITTLE ENDIAN</label>
+                    <label>
+                        <input type="radio" name="browser"
+                               onChange={this.handleDataChange} value={this.state.order} />
+                        BIG ENDIAN
+                    </label>
+                    <label><input type="radio" name="browser" value="LITTLE_ENDIAN" onChange={this.handleDataChange} /> LITTLE ENDIAN</label>
                 </p>
                 <h4>
                     TLV(HEX)
